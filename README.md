@@ -2,6 +2,8 @@
 
 A web app that digitally recreates Sanzo Wada's *A Dictionary of Color Combinations* (1933) — **348 curated color palettes** composed from **159 unique colors**, browsable page-by-page just like the original book.
 
+### **[🔗 Live Demo → dennisazor.github.io/dictionary-of-color-combinations](https://dennisazor.github.io/dictionary-of-color-combinations/)**
+
 ![React](https://img.shields.io/badge/React_18-61DAFB?logo=react&logoColor=black)
 ![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?logo=typescript&logoColor=white)
 ![Tailwind](https://img.shields.io/badge/Tailwind_CSS-06B6D4?logo=tailwindcss&logoColor=white)
