@@ -129,7 +129,10 @@ src/
 
 Book: *A Dictionary of Colour Combinations* by **Sanzo Wada**, published by **Seigensha Art Publishing**.
 
+## Author
+
+Created by **[Dennis Azor](https://github.com/dennisazor)**
+
 ## License
 
-MIT
-```
+MIT — see [LICENSE](LICENSE) for details.
