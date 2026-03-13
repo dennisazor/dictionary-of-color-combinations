@@ -2,6 +2,13 @@
   "name": "dictionary-of-color-combinations",
   "private": true,
   "version": "1.0.0",
+  "description": "A web app recreating Sanzo Wada's A Dictionary of Color Combinations — 348 curated palettes from 159 unique colors",
+  "author": "Dennis Azor (https://github.com/dennisazor)",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dennisazor/dictionary-of-color-combinations"
+  },
   "type": "module",
   "scripts": {
     "dev": "vite",

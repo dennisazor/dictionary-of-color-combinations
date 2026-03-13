@@ -22,6 +22,9 @@ function App() {
           Based on <em className="font-serif">A Dictionary of Colour Combinations</em> by Sanzo Wada (1883–1967)
           &nbsp;·&nbsp; Published by Seigensha Art
         </p>
+        <p className="text-[10px] text-stone-300 mt-1">
+          Built by <a href="https://github.com/dennisazor" className="underline hover:text-stone-500 transition-colors" target="_blank" rel="noopener noreferrer">Dennis Azor</a>
+        </p>
       </footer>
     </div>
   );
