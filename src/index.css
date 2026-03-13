@@ -1,0 +1,46 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  ::-webkit-scrollbar {
+    width: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #a8a29e;
+    border-radius: 3px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #78716c;
+  }
+}
+
+@layer components {
+  .palette-card {
+    @apply bg-white rounded-lg shadow-sm border border-stone-200 overflow-hidden transition-shadow duration-200;
+  }
+  .palette-card:hover {
+    @apply shadow-md;
+  }
+
+  .nav-tab {
+    @apply px-4 py-2 text-sm font-medium rounded-lg transition-colors duration-150;
+  }
+  .nav-tab-active {
+    @apply bg-stone-900 text-white;
+  }
+  .nav-tab-inactive {
+    @apply text-stone-600 hover:bg-stone-200;
+  }
+
+  .chapter-pill {
+    @apply px-3 py-1 text-xs font-medium rounded-full cursor-pointer transition-colors duration-150;
+  }
+}
