@@ -9,15 +9,22 @@ export function Randomizer() {
     palettes[Math.floor(Math.random() * palettes.length)]
   );
   const [lockedColor, setLockedColor] = useState<ColorEntry | null>(null);
+  const [colorCount, setColorCount] = useState<2 | 3 | 4 | null>(null);
   const [isAnimating, setIsAnimating] = useState(false);
   const [history, setHistory] = useState<Palette[]>([]);
 
   const getFilteredPalettes = useCallback(() => {
-    if (!lockedColor) return palettes;
-    return palettes.filter((p) =>
-      p.colors.some((c) => c.hex === lockedColor.hex)
-    );
-  }, [lockedColor]);
+    let pool = palettes;
+    if (colorCount) {
+      pool = pool.filter((p) => p.colors.length === colorCount);
+    }
+    if (lockedColor) {
+      pool = pool.filter((p) =>
+        p.colors.some((c) => c.hex === lockedColor.hex)
+      );
+    }
+    return pool;
+  }, [lockedColor, colorCount]);
 
   const randomize = useCallback(() => {
     const pool = getFilteredPalettes();
@@ -90,6 +97,25 @@ export function Randomizer() {
         <span className="text-xs text-stone-400 ml-2">
           {filteredCount} of {palettes.length}
         </span>
+      </div>
+
+      {/* Color count filter */}
+      <div className="flex items-center justify-center gap-2 mt-5">
+        <span className="text-xs text-stone-400 mr-1">Colors:</span>
+        {([null, 2, 3, 4] as const).map((n) => (
+          <button
+            key={`count-${n}`}
+            type="button"
+            className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-all border ${
+              colorCount === n
+                ? 'border-stone-900 bg-stone-900 text-white'
+                : 'border-stone-200 bg-white text-stone-500 hover:border-stone-300'
+            }`}
+            onClick={() => setColorCount(n)}
+          >
+            {n === null ? 'All' : n}
+          </button>
+        ))}
       </div>
 
       {/* Lock a color */}
