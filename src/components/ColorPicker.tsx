@@ -187,6 +187,7 @@ export function ColorPicker() {
             onClick={() => {
               setMode(m);
               if (m !== 'camera') stopCamera();
+              if (m !== mode) setCanvasHasImage(false);
             }}
           >
             {m === 'manual' && '🎨 Pick Color'}

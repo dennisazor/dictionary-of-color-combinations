@@ -30,6 +30,9 @@ export function Randomizer() {
     const pool = getFilteredPalettes();
     if (pool.length === 0) return;
 
+    // If only one palette in pool and it's already showing, nothing to do
+    if (pool.length === 1 && pool[0].id === current.id) return;
+
     setIsAnimating(true);
     setHistory((prev) => [...prev.slice(-19), current]); // Keep last 20
 

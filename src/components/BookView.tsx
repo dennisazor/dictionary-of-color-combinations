@@ -1,5 +1,5 @@
 import { useState, useRef, useCallback, useEffect } from 'react';
-import { palettes, getPalettesByChapter } from '../data/palettes';
+import { getPalettesByChapter, palettes } from '../data/palettes';
 import { SWATCH_NAMES, SWATCH_COLORS } from '../data/types';
 import { PaletteCard } from './PaletteCard';
 
@@ -17,8 +17,9 @@ export function BookView() {
   }, []);
 
   // Track which chapter is currently in view
+  // Use a small delay to ensure refs are populated after first render
   useEffect(() => {
-    observerRef.current = new IntersectionObserver(
+    const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
@@ -29,12 +30,19 @@ export function BookView() {
       },
       { rootMargin: '-20% 0px -70% 0px' }
     );
+    observerRef.current = observer;
 
-    chapterRefs.current.forEach((el) => {
-      observerRef.current!.observe(el);
+    // Defer observation to next frame so refs are populated
+    const frameId = requestAnimationFrame(() => {
+      chapterRefs.current.forEach((el) => {
+        observer.observe(el);
+      });
     });
 
-    return () => observerRef.current?.disconnect();
+    return () => {
+      cancelAnimationFrame(frameId);
+      observer.disconnect();
+    };
   }, []);
 
   const scrollToChapter = (chapter: number) => {
@@ -44,10 +52,7 @@ export function BookView() {
     }
   };
 
-  // Show all palettes in book order (by combination ID), or filter by chapter
-  const displayPalettes = activeChapter !== null && activeChapter >= 0
-    ? palettes
-    : palettes;
+  const totalPalettes = palettes.length;
 
   return (
     <div className="flex flex-col h-full">
@@ -76,7 +81,7 @@ export function BookView() {
             </button>
           ))}
           <span className="text-xs text-stone-400 ml-auto shrink-0">
-            {displayPalettes.length} palettes
+            {totalPalettes} palettes
           </span>
         </div>
       </div>
